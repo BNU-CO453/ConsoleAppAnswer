@@ -7,13 +7,11 @@ namespace CO453_ConsoleAppAnswer.App03
     /// Grade B is Upper Second  : 60 - 69
     /// Grade C is Lower Second  : 50 - 59
     /// Grade D is Third Class   : 40 - 49
-    /// Grade E is Pass          : 38 - 39
-    /// Grade F is Fail          :  0 - 37
-    /// Grade X is NOT VALID
+    /// Grade F is Fail          :  0 - 39
     /// </summary>
     public enum Grade
     {
-        X, F, E, D, C, B, A
+        F, D, C, B, A
     }
 
     /// <summary>
@@ -32,7 +30,6 @@ namespace CO453_ConsoleAppAnswer.App03
         public const int LowestMark = 0;
         public const int HighestMark = 100;
 
-        public const int LowestGradeE = 38;
         public const int LowestGradeD = 40;
         public const int LowestGradeC = 50;
         public const int LowestGradeB = 60;
@@ -66,6 +63,7 @@ namespace CO453_ConsoleAppAnswer.App03
             };
 
             GradeProfile = new int[(int)Grade.A + 1];
+            Marks = new int[Students.Length];
         }
 
         public void OutputMenu()
@@ -116,18 +114,14 @@ namespace CO453_ConsoleAppAnswer.App03
 
 
         /// <summary>
-        /// Convert a student mark to a grade 
+        /// Convert a student mark (0 - 100) to a grade 
         /// from F (Fail) to A (First Class)
         /// </summary>
         public Grade ConvertToGrade(int mark)
         {
-            if (mark >= LowestMark && mark < LowestGradeE)
+            if (mark >= LowestMark &&  mark < LowestGradeD)
             {
                 return Grade.F;
-            }
-            else if (mark >= LowestGradeE && mark < LowestGradeD)
-            {
-                return Grade.E;
             }
             else if (mark >= LowestGradeD && mark < LowestGradeC)
             {
@@ -141,11 +135,10 @@ namespace CO453_ConsoleAppAnswer.App03
             {
                 return Grade.B;
             }
-            else if (mark >= LowestGradeA && mark <= HighestMark)
+            else 
             {
                 return Grade.A;
             }
-            else return Grade.X;
         }
 
         /// <summary>
@@ -163,6 +156,7 @@ namespace CO453_ConsoleAppAnswer.App03
             {
                 if (mark > Maximum) Maximum = mark;
                 if (mark < Minimum) Minimum = mark;
+
                 total += mark;
             }
 
@@ -176,7 +170,7 @@ namespace CO453_ConsoleAppAnswer.App03
         /// </summary>
         public void CalculateGradeProfile()
         {
-            for(int i = 0; i < GradeProfile.Length; i++)
+            for (int i = 0; i < GradeProfile.Length; i++)
             {
                 GradeProfile[i] = 0;
             }
@@ -217,7 +211,7 @@ namespace CO453_ConsoleAppAnswer.App03
 
         private void OutputGradeProfile()
         {
-            Grade grade = Grade.X;
+            Grade grade = Grade.F;
             Console.WriteLine();
 
             foreach (int count in GradeProfile)
