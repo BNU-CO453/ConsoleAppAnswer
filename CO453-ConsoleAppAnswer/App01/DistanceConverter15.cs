@@ -41,7 +41,7 @@ namespace CO453_ConsoleAppAnswer
             OutputHeading();
 
             FromUnit = SelectUnit(" Select distance unit to convert from > ");
-            ToUnit = SelectUnit(" Select distance unit to conver to > ");
+            ToUnit = SelectUnit(" Select distance unit to convert to > ");
 
             Console.WriteLine($" Converting {FromUnit} to {ToUnit}");
             Console.WriteLine();

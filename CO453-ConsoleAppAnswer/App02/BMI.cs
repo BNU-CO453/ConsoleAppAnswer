@@ -59,16 +59,28 @@ namespace CO453_ConsoleAppAnswer.App02
             if(unitSystem == UnitSystem.Metric)
             {
                 InputMetricDetails();
-                index = kilograms / (metres * metres);
+                CalculateMetricBMI();
             }
             else
             {
                 InputImperialDetails();
-                index = pounds * 703 / (inches * inches);
+                CalculateImperialBMI();
             }
 
             OutputHealthMessage();
 
+        }
+
+        public double CalculateMetricBMI()
+        {
+            index = kilograms / (metres * metres);
+            return index;
+        }
+
+        public double CalculateImperialBMI()
+        {
+            index = pounds * 703 / (inches * inches);
+            return index;
         }
 
         /// <summary>
