@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace CO453_ConsoleAppAnswer.App04
 {
@@ -23,17 +24,26 @@ namespace CO453_ConsoleAppAnswer.App04
             Message = text;
         }
 
-        public override void Display()
-        {
-            Console.WriteLine("\n    Message Post");
-            Console.WriteLine("    ------------");
-            Console.WriteLine($"    Message: {Message}");
-            base.Display();
-        }
-
         public override string GetSummary()
         {
             return base.GetSummary() + $" Message: {Message}";
+        }
+
+        /// <summary>
+        /// Return as text the author's name, the time elapsed,
+        /// the number of likes and how many comments the post has
+        /// </summary>
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine($"\tMessage Post");
+            builder.AppendLine("\t----------");
+            builder.AppendLine($"\tFilename: {Message}");
+
+            builder.Append(base.ToString());
+
+            return builder.ToString();
         }
 
     }

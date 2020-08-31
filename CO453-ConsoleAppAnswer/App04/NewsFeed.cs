@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CO453_ConsoleAppAnswer.App04
 {
@@ -22,18 +23,24 @@ namespace CO453_ConsoleAppAnswer.App04
     {
         private List<Post> Posts { get; }
 
+        protected StreamWriter fileWriter;
+
+        protected string filename;
+
         /// <summary>
         /// Constructor creates a list of 3 posts to make testing 
         /// easier.
         /// </summary>
         public NewsFeed()
         {
-            Posts = new List<Post>
-            {
-                new MessagePost("Veena", "Hello"),
-                new PhotoPost("Veena", "photo.jpg", "My Cat"),
-                new MessagePost("Sue", "Hi There!")
-            };
+            Posts = new List<Post>();
+            OpenFile();
+
+            //{
+            //    new MessagePost("Veena", "Hello"),
+            //    new PhotoPost("Veena", "photo.jpg", "My Cat"),
+            //    new MessagePost("Sue", "Hi There!")
+            //};
         }
 
         ///<summary>
@@ -148,5 +155,25 @@ namespace CO453_ConsoleAppAnswer.App04
 
             return Posts[choiceNo - 1];
         }
+
+        private void OpenFile()
+        {
+            filename = "D:/Projects/PostData.txt";
+
+            try
+            {
+                var output = new FileStream(
+                    filename, FileMode.OpenOrCreate,
+                    FileAccess.Write);
+
+                fileWriter = new StreamWriter(output);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("  File Open/Create Failed!!!");
+            }
+        }
+
+
     }
 }

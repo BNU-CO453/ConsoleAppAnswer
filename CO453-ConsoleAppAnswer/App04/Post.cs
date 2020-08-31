@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace CO453_ConsoleAppAnswer.App04
@@ -22,8 +23,9 @@ namespace CO453_ConsoleAppAnswer.App04
         private int likes;
 
         private readonly List<String> comments;
-        
-        
+
+
+
         public Post(String author)
         {
             Username = author;
@@ -72,7 +74,7 @@ namespace CO453_ConsoleAppAnswer.App04
         ///</summary>
         public virtual void Display()
         {
-            Console.WriteLine(ToString());
+            Console.WriteLine(this);
         }
 
 
@@ -120,12 +122,12 @@ namespace CO453_ConsoleAppAnswer.App04
         {
             StringBuilder builder = new StringBuilder();
             
-            builder.AppendLine($"    Author: {Username}");
-            builder.AppendLine($"    Time Elpased: {FormatElapsedTime(Timestamp)} \n");
+            builder.AppendLine($"\tAuthor: {Username}");
+            builder.AppendLine($"\tTime Elpased: {FormatElapsedTime(Timestamp)} \n");
 
             if (likes > 0)
             {
-                builder.AppendLine($"    Likes:  {likes}  people like this.");
+                builder.AppendLine($"\tLikes:  {likes}  people like this.");
             }
             else
             {
@@ -134,15 +136,15 @@ namespace CO453_ConsoleAppAnswer.App04
 
             if (comments.Count == 0)
             {
-                builder.AppendLine("    No comments.");
+                builder.AppendLine("\tNo comments.");
             }
             else
             {
-                builder.AppendLine($"    {comments.Count}  comment(s).\n");
+                builder.AppendLine($"\t{comments.Count}  comment(s).\n");
                 
                 foreach(string comment in comments)
                 {
-                    builder.AppendLine($"    {comment}");
+                    builder.AppendLine($"\t{comment}");
                 }
 
                 builder.AppendLine();

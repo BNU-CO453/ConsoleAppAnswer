@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace CO453_ConsoleAppAnswer.App04
 {
@@ -29,20 +30,30 @@ namespace CO453_ConsoleAppAnswer.App04
             this.Caption = caption;
         }
 
-        public override void Display()
-        {
-            Console.WriteLine("\n    Photo Post");
-            Console.WriteLine("    -----------");
-            Console.WriteLine($"    Filename: [{Filename}]");
-            Console.WriteLine($"    Caption: {Caption}");
-
-            base.Display();
-        }
 
         public override string GetSummary()
         {
             return base.GetSummary() + $" Photo: {Caption}";
         }
+
+        /// <summary>
+        /// Return as text the author's name, the time elapsed,
+        /// the number of likes and how many comments the post has
+        /// </summary>
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine($"\tPhoto Post");
+            builder.AppendLine( "\t----------");
+            builder.AppendLine($"\tFilename: {Filename}");
+            builder.AppendLine($"\tCaption: {Caption} \n");
+
+            builder.Append(base.ToString());
+
+            return builder.ToString();
+        }
+
 
     }
 }
